@@ -4,6 +4,17 @@
 
 A simple calendar application that allows users to display a calendar for a specific month and year. The calendar will display the days of the week and the dates for the month. The user can also highlight a specific date on the calendar.
 
+
+## CDN
+
+```html
+<!-- CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/hardik-143/the-calendar/dist/css/thecalendar.css">
+
+<!-- Js -->
+<script src="https://cdn.jsdelivr.net/gh/hardik-143/the-calendar/dist/js/thecalendar.js"></script>
+```
+
 ## Requirements
 
 - jQuery
