@@ -1,0 +1,205 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap");
+
+:root {
+  --black: hsl(227, 10%, 10%);
+  --white: #f6f5f5;
+  --blue: #0c359e;
+  --highlight: #fddc23;
+}
+
+body {
+  color: var(--black);
+  background: var(--white);
+  font-family: "Nunito Sans", sans-serif;
+  text-align: center;
+  min-height: 100vh;
+  margin: 0;
+  padding-bottom: 50px;
+}
+.navigation-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 0;
+}
+.thecalendar {
+  padding: 16px 0;
+  &.month-view {
+    margin: 0 auto;
+    width: calc(100% - 20px);
+    max-width: 340px;
+    .thecalendar-inner {
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 10px 0px inset;
+    }
+  }
+  &.year-view {
+    .month-name {
+      font-size: 20px;
+      margin-bottom: 4px;
+    }
+  }
+  .thecalendar-header {
+    .heading-text {
+      font-size: 24px;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+    &.thecalendar-header-year-wrapper {
+      padding: 0 10px;
+      margin: 0 auto 8px;
+
+      .year-heading {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+      }
+    }
+    &.thecalendar-header-month-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 10px;
+
+      .month-heading {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        .year-title {
+          cursor: pointer;
+          transition: all 0.3s ease;
+          &:hover {
+            transform: scale(1.05);
+            color: var(--blue);
+          }
+        }
+      }
+    }
+  }
+  .thecalendar-body {
+    .thecalendar-year-inner {
+      display: grid;
+      grid-gap: 16px;
+      padding: 16px;
+      grid-template-columns: repeat(4, 1fr);
+
+      @media only screen and (max-width: 1200px) {
+        .days {
+          font-size: 14px !important;
+        }
+      }
+
+      @media only screen and (max-width: 1100px) {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      @media only screen and (max-width: 800px) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      @media only screen and (max-width: 500px) {
+        grid-template-columns: repeat(1, 1fr);
+      }
+
+      .months-wrapper {
+        padding: 20px 10px 10px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 10px 0px inset;
+
+        .month-name {
+          line-height: 30px;
+          border-radius: 5px;
+          text-align: center;
+          font-weight: bold;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          color: var(--black);
+
+          &:hover {
+            transform: scale(1.05);
+            color: var(--blue);
+          }
+        }
+      }
+    }
+  }
+}
+
+/* navigation wrapper */
+.thecalendar-navigation-wrapper {
+  display: flex;
+  .thecalendar-navigation-btn {
+    background: none;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border: none;
+    outline: none;
+    position: relative;
+    color: var(--black);
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.days-list,
+.day-row {
+  display: grid;
+  grid-gap: 4px;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.days-list > div,
+.day-row > div {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1/1;
+}
+
+.day-row .days {
+  font-size: 16px;
+  cursor: pointer;
+  position: relative;
+  &.today {
+    color: var(--white);
+    font-weight: bold;
+    &::before {
+      content: "";
+      position: absolute;
+      width: calc(100% - 4px);
+      height: calc(100% - 4px);
+      background: var(--blue);
+      border-radius: 50%;
+      z-index: -1;
+      transition: all 0.3s ease;
+    }
+  }
+  &.thecalendar-highlight:not(.disabled) {
+    color: var(--black);
+    font-weight: bold;
+    &::before {
+      content: "";
+      position: absolute;
+      width: calc(100% - 4px);
+      height: calc(100% - 4px);
+      background: var(--highlight);
+      border-radius: 50%;
+      z-index: -1;
+      transition: all 0.3s ease;
+    }
+  }
+  &.disabled {
+    color: #ccc;
+    cursor: not-allowed;
+  }
+}

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../dist/css/thecalendar.css">
+</head>
+
+<body>
+  <div id="calendar"></div>
+
+  <script src="../js/jquery-3.7.1.min.js"></script>
+  <script src="../dist/js/thecalendar.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $.fn.thecalendar.defaults = {
+        today: true,
+      };
+      // $("#calendar").thecalendar();
+      let calendar = $("#calendar").thecalendar({
+        today: true,
+
+        // date: "12-12-2024",
+        // date: ["12-02-2024","dd-mm-yyyy"],
+        // date: {
+        //   date: "2023-12-24",
+        //   format: "yyyy-mm-dd",
+        // }, // 'dd-mm-yyyy' or 'yyyy-mm-dd' or 'dd/mm/yyyy' or 'yyyy/mm/dd'
+        // if date is not provided, it will take current date
+
+
+        type: "Year",
+        // type: "Month",
+
+
+
+
+        // highlightDates: [
+        //   "02-03-2024",
+        //   "04-03-2024",
+        //   "06-03-2024",
+        //   "08-03-2024",
+        //   "10-03-2024",
+        //   "12-03-2024",
+        //   "02-04-2024",
+        //   "04-04-2024",
+        // ],
+        highlightDates: () => {
+          let dates = [];
+          for (let i = 0; i < 10; i++) {
+            dates.push(`0${i + 1}-03-2024`);
+          }
+          return dates;
+        },
+
+
+        onDateClick: function (e, date) {
+          // e = calendar dom element
+          // date = clicked date
+          console.log("onDateClick", date, e);
+        },
+        onMonthChange: function (e, date) {
+          // e = calendar dom element
+          // date = new and previous month
+          console.log("onMonthChange", date);
+        },
+        onYearChange: function (e, date) {
+          // e = calendar dom element
+          // date = new and previous year
+          console.log("onYearChange", date);
+        },
+        onBeforeInit: function (e, date) {
+          console.log("onBeforeInit", date);
+        },
+        onAfterInit: function (e, date) {
+          console.log("onAfterInit", date);
+        },
+        onBeforeMonthChange: function (e, date) {
+          console.log("onBeforeMonthChange", date);
+        },
+        onBeforeYearChange: function (e, date) {
+          console.log("onBeforeYearChange", date);
+        },
+        onViewChange: function (e, date) {
+          console.log("onViewChange", date);
+        },
+        onHighlightDatesClick: function (event, obj) {
+          console.log("onHighlightDates", obj);
+        },
+      });
+      console.log(calendar);
+      // events 
+      $("#calendar").on("tc.init", function (e, calendar) {
+        console.log("tc.init", calendar);
+      });
+      $("#calendar").on("tc.date.click", function (e, calendar) {
+        console.log("tc.select", calendar);
+      });
+      $("#calendar").on("tc.year.change", function (e, calendar) {
+        console.log("tc.year.change", calendar);
+      });
+      $("#calendar").on("tc.month.change", function (e, calendar) {
+        console.log("tc.month.change", calendar);
+      });
+      $("#calendar").on("tc.highlight.click", function (e, calendar) {
+        console.log("tc.highlight.click", calendar);
+      });
+    });
+
+  </script>
+</body>
+
+</html>
